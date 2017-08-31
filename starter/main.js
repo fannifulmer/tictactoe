@@ -10,23 +10,47 @@ let matrix = [
 let player = 'x'
 
 //Practice: Add, one cell to the board and set an X in it.
-function addCell(board){
+//Hint: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
+//Hint: https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild
+//Hint: https://developer.mozilla.org/en-US/docs/Web/API/Element/className
+//Hint: https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML
 
+
+function addRowToBoard(board, rowClassName) {
+  const row = document.createElement("tr")
+  board.appendChild(row)
+  row.className = 'row' + rowClassName
 }
 
-function setCellValue(cell){
 
+function addCellToRow(row, cellClassName, cellValue) {
+  const cell = document.createElement("td")
+  row.appendChild(cell)
+  cell.className = cellClassName
+  cell.innerHTML = cellValue
 }
+
 
 //-- Main code: Loop through the matrix and draw it’s values
 
-function addHtmlElementToBoard(board){
-
+function cellClassNameCreator(rowIndex, columnIndex){
+  return 'cell-' + rowIndex + '-' + columnIndex
 }
 
-function renderBoard(matrix) {
-
+function renderBoard(board, matrix) {
+  matrix.forEach((row, rowIndex) => {
+    addRowToBoard(board, rowIndex)
+    const rowElement = document.querySelector('.row' + rowIndex)
+    row.forEach((item, itemIndex) => {
+      let className = cellClassNameCreator(rowIndex, itemIndex)
+      addCellToRow(rowElement, className, item)
+    })
+  })
 }
+
+renderBoard(board, matrix)
+
+
 
 //-- Main code: Setter
 
@@ -34,7 +58,7 @@ function setPlayer(){
 
 }
 
-function setMatrix(position, player){
+function setMatrix(matrix, position, player){
 
 }
 
@@ -43,12 +67,17 @@ function setMatrix(position, player){
 
 //-- Main code: Event-listener
 
+//Hint: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+
+function getPositionFromClass(nodeClass){}
+
 function addEventListener(){
 
 }
 
 //-- Main code: checker
-
+// possible sepration: isEmptyPlace isAnyEmptyPlace isLineWin isAnyRowWin transposeTable isAnyColumnWin getDiagonals isAnyDiagonalWin
+// check high https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
 function isLineWin(matrix){
 
 }
@@ -62,5 +91,6 @@ function isGameOver(){
 }
 
 //-- Main code: Game //Invite the functions.
+function actionOnEvent(nodeClass){}
 
 //
