@@ -18,9 +18,18 @@ If you take a look at **[main.js](/starter-advanced/main.js)** we have done thes
   - draw an X
   - loop through each element in the 2D matrix and draw the correct element on the correct position
   - do not forget to clean the board when you want to draw a new state on the UI
+- move function ([details](#move-function))  
+**specs:** receives the player ('X' or 'O') the coordinates of the move and executes the move if it is valid  
+**sub-steps:**
+  - store the current player
+  - create a function that checks if a move is valid
+  - create a function that add the move to the board matrix
+  - switch player if the move was valid
 
 
-#### Render function
+## Details
+
+### Render function
 
 Goal: create a function (and some helper functions) that receives a board (2D array) as an input and draws it to the canvas.
 
@@ -55,3 +64,24 @@ var cellCenterX = boardX * tileSize + tileSize/2
   <summary>Hint</summary>
   Probably you could take use of [clearRect](https://github.com/LetsCodeBP/the-snake-workshop/blob/master/reference.md#clear-the-board) function defined on the canvas context.
 </details>
+
+### Move function
+
+Goal: create a set of functions that handle a move being added to our game representation.
+
+- **store the current player**
+<details>
+ <summary>Hint</summary>
+Storing 'X or 'O' will probably be sufficient in a place where all of our desired functions can access it.
+</details>
+<br>  
+
+- **create a function that checks if a move is valid**
+<details>
+ <summary>Hint</summary>
+New move can only be executed if the place where we what to place a move is empty.
+You should probably also check if the move position is within the board or not.
+</details>
+<br>
+- **create a function that adds the move to the board matrix**
+- **switch player if the move was valid**
