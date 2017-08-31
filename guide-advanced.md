@@ -12,7 +12,7 @@ If you take a look at **[main.js](/starter-advanced/main.js)** we have done thes
 
 #### You will need to create the following:
 - a render function ([details](#render-function))  
-**specs:** receives a board (2D array) as input, and represents it in the DOM.
+**specs:** receives a board (2D array) as input, and represents it in the DOM.  
 **sub-steps:**
   - draw an O
   - draw an X
@@ -24,21 +24,21 @@ If you take a look at **[main.js](/starter-advanced/main.js)** we have done thes
 
 Goal: create a function (and some helper functions) that receives a board (2D array) as an input and draws it to the canvas.
 
-- draw an O
+- **draw an O**
 <details>
  <summary>Help for drawing the O</summary>
 https://www.w3schools.com/tags/canvas_arc.asp
 </details>
 <br>
 
-- draw an X
+- **draw an X**
 <details>
  <summary>Help for drawing the X</summary>
 https://stackoverflow.com/a/12835725/2020696
 </details>
 <br>  
 
-- draw each element on the board  
+- **draw each element on the board**  
 You will probably need something that looks like a double for loop (or forEach). You will also need to know the coordinates where you need to draw the shape.
 <details>
  <summary>Hint</summary>
@@ -47,4 +47,11 @@ The code will probably resemble this:
 ```
 var cellCenterX = boardX * tileSize + tileSize/2
 ```
+</details>
+<br>
+
+- **clean the board**
+<details>
+  <summary>Hint</summary>
+  Probably you could take use of [clearRect](https://github.com/LetsCodeBP/the-snake-workshop/blob/master/reference.md#clear-the-board) function defined on the canvas context.
 </details>
