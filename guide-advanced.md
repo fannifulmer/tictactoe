@@ -25,6 +25,15 @@ If you take a look at **[main.js](/starter-advanced/main.js)** we have done thes
   - create a function that checks if a move is valid
   - create a function that add the move to the board matrix
   - switch player if the move was valid
+- event listener ([details](#event-listener))  
+**specs:** based on the click or mouseup event add a move to our board representation
+**sub-steps:**
+  - add an event-listener to the board
+  - add a method that logs “YOLO” if you click the board
+  - add a method that logs coordinates clicked within the board if you click the board
+  - get the tile coordinates from the pixel coordinates
+  - connect with the setter
+  - check if the move was added to the correct place in the board array after the click
 
 
 ## Details
@@ -83,5 +92,40 @@ New move can only be executed if the place where we what to place a move is empt
 You should probably also check if the move position is within the board or not.
 </details>
 <br>
+
 - **create a function that adds the move to the board matrix**
 - **switch player if the move was valid**
+
+### Event listener
+- **add an event-listener to the board**
+<details>
+ <summary>Hint</summary>
+More on event listeners: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+</details>
+<br>
+
+- **add a method that logs “YOLO” if you click the board**
+- **add a method that logs coordinates clicked within the board if you click the board**
+<details>
+ <summary>Hint</summary>
+You will probably what to use .offsetX and .offsetY on the [event object](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent)
+</details>
+<br>
+
+- **get the tile coordinates from the pixel coordinates**
+<details>
+ <summary>Hint</summary>
+If you cannot think of anything better you could use something along the lines of this:  
+```
+boardX = parseInt(clickPixelX / boardSizePX * boardTileCount)
+```
+</details>
+<br>
+
+- **connect with the setter**
+- **check if the move was added to the correct place in the board array after the click**
+<details>
+ <summary>Hint</summary>
+You can use the developer console (console.log() or console.table()) or you can simply call the render function after a move was made.
+</details>
+<br>
