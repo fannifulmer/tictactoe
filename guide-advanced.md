@@ -20,22 +20,22 @@ If you take a look at **[main.js](/starter-advanced/main.js)** we have done thes
   - do not forget to clean the board when you want to draw a new state on the UI
 
 
-##### Render function
+#### Render function
 
-Goal: create a function (and some helper functions) that recieves a board (2D array) as an input and draws it to the canvas.
+Goal: create a function (and some helper functions) that receives a board (2D array) as an input and draws it to the canvas.
 
 - draw an O
 <details>
  <summary>Help for drawing the O</summary>
 https://www.w3schools.com/tags/canvas_arc.asp
 </details>
-<br>
+<br>  
 - draw an X
 <details>
  <summary>Help for drawing the X</summary>
 https://stackoverflow.com/a/12835725/2020696
 </details>
-<br>
+<br>  
 - draw each element on the board  
 You will probably need something that looks like a double for loop (or forEach). You will also need to know the coordinates where you need to draw the shape.
 <details>
