@@ -2,7 +2,7 @@
 ## Guide - advanced
 
 Script:
-In this workshop we will be creating the Tic-Tac-Toe game, to achieve this,
+In this workshop we will be creating the Tic-Tac-Toe game (for simplicity start with a 3*3 board, if you will have time you can extend your solution further), to achieve this,
 you will need to go through these steps:
 - create a board representation
 - decide how you will display the board for the user
@@ -34,6 +34,13 @@ If you take a look at **[main.js](/starter-advanced/main.js)** we have done thes
   - get the tile coordinates from the pixel coordinates
   - connect with the setter
   - check if the move was added to the correct place in the board array after the click
+- checker ([details](#checker))  
+**specs:** create a function that checks if the game was won or not
+**sub-steps:**
+  - check the matrix vertically
+  - check horizontally
+  - check diagonals
+
 
 
 ## Details
@@ -97,6 +104,9 @@ You should probably also check if the move position is within the board or not.
 - **switch player if the move was valid**
 
 ### Event listener
+
+Goal: write code that connects the UI and the game. If a player clicks a tile, register the move (if it is a valid one) in the game representation (our 2D matrix).
+
 - **add an event-listener to the board**
 <details>
  <summary>Hint</summary>
@@ -129,3 +139,9 @@ boardX = parseInt(clickPixelX / boardSizePX * boardTileCount)
 You can use the developer console (console.log() or console.table()) or you can simply call the render function after a move was made.
 </details>
 <br>
+
+### Checker
+
+Goal: write a function that checks if the game was won by a player.  
+General recommended approach: your sub-functions (vertical, horizontal, diagonal checker) should assemble strings that they pass to a generic checker function.  
+How to check: if we assume that the board is 3*3, the you should check that there are no empty spots in the string (if the non moved tile is represented as ' ') or if the string length is 3 (if the non moved tile is represented as '') AND the string only contains the same characters (X 's or O's).
