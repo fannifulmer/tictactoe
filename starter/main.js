@@ -7,14 +7,7 @@ let matrix = [
   ['', '', '']
 ]
 
-let player = 'x'
-
-//Practice: Add, one cell to the board and set an X in it.
-//Hint: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table
-//Hint: https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild
-//Hint: https://developer.mozilla.org/en-US/docs/Web/API/Element/className
-//Hint: https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML
-
+let player = 'X'
 
 function addRowToBoard(board, rowClassName) {
   const row = document.createElement("tr")
@@ -30,9 +23,6 @@ function addCellToRow(row, cellClassName, cellValue) {
   cell.innerHTML = cellValue
 }
 
-
-//-- Main code: Loop through the matrix and draw it’s values
-
 function cellClassNameCreator(rowIndex, columnIndex){
   return 'cell-' + rowIndex + '-' + columnIndex
 }
@@ -46,51 +36,81 @@ function renderBoard(board, matrix) {
       addCellToRow(rowElement, className, item)
     })
   })
+  addEventListener()
 }
-
-renderBoard(board, matrix)
-
-
-
-//-- Main code: Setter
 
 function setPlayer(){
-
+  if (player === 'X'){
+    player = 'O'
+  } else {
+    player = 'X'
+  }
 }
 
-function setMatrix(matrix, position, player){
-
+function playerChanger(){
+  let nextPlayer = document.querySelector('h1');
+    nextPlayer.innerHTML = 'Turn for' + ' ' + player;
 }
 
-//Test your solution
-// setMatrix([0,1],'O')
+function setMatrix(matrix, position, className){
+  matrix[position[0]][position[1]] = player;
 
-//-- Main code: Event-listener
+  let setClass = document.getElementsByClassName(className);
+  if (setClass[0].innerHTML === ''){
+    setClass[0].innerHTML = player;  
+    isLineWin(matrix);
+    isColumnWin(matrix);
+    isAnyDiagonalWin(matrix);
+    setPlayer();
+  }
+}
 
-//Hint: https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener
+function addMove(position, className){
+  setMatrix(matrix, position, className);
+  playerChanger();
+}
 
-function getPositionFromClass(nodeClass){}
+function getPositionFromClass(nodeClass){
+  let className = nodeClass;
+  nodeClass = nodeClass.split('-');
+  let positionX = parseInt(nodeClass[1]);
+  let positionY = parseInt(nodeClass[2]);
+  let position = []
+  position.push(positionX);
+  position.push(positionY);
+  addMove(position, className);
+}
 
 function addEventListener(){
-
+  board.addEventListener('click', function(e){
+      getPositionFromClass(e.target.className);
+    })
 }
 
-//-- Main code: checker
-// possible sepration: isEmptyPlace isAnyEmptyPlace isLineWin isAnyRowWin transposeTable isAnyColumnWin getDiagonals isAnyDiagonalWin
-// check high https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every
 function isLineWin(matrix){
+  for(let i = 0; i < matrix.length; i++){
+    if (matrix[i][0] === matrix[i][1] && matrix[i][1] === matrix[i][2] && matrix[i][0] !== ''){
+      isWon();
+    }
+  }
+}
 
+function isColumnWin(matrix){
+  for(let j = 0; j < matrix.length; j++){
+    if (matrix[0][j] === matrix[1][j] && matrix[1][j] === matrix[2][j] && matrix[0][j] !== ''){
+      isWon();
+    }
+  }
+}
+
+function isAnyDiagonalWin(matrix){
+  if(matrix[0][0] === matrix[1][1] && matrix[1][1] === matrix[2][2] && matrix[0][0] !== '' || matrix[2][0] === matrix[1][1] && matrix[1][1] === matrix[0][2] && matrix[2][0] !== '' ){
+      isWon();
+  }
 }
 
 function isWon(){
-
+  console.log('win' + player);
 }
 
-function isGameOver(){
-
-}
-
-//-- Main code: Game //Invite the functions.
-function actionOnEvent(nodeClass){}
-
-//
+renderBoard(board, matrix);
