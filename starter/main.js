@@ -1,5 +1,7 @@
 'use strict';
+let nextPlayer = document.querySelector('h1');
 const board = document.querySelector(".board");
+let gamerunning = true;
 
 let matrix = [
   ['', '', ''],
@@ -39,35 +41,10 @@ function renderBoard(board, matrix) {
   addEventListener()
 }
 
-function setPlayer(){
-  if (player === 'X'){
-    player = 'O'
-  } else {
-    player = 'X'
-  }
-}
-
-function playerChanger(){
-  let nextPlayer = document.querySelector('h1');
-    nextPlayer.innerHTML = 'Turn for' + ' ' + player;
-}
-
-function setMatrix(matrix, position, className){
-  matrix[position[0]][position[1]] = player;
-
-  let setClass = document.getElementsByClassName(className);
-  if (setClass[0].innerHTML === ''){
-    setClass[0].innerHTML = player;  
-    isLineWin(matrix);
-    isColumnWin(matrix);
-    isAnyDiagonalWin(matrix);
-    setPlayer();
-  }
-}
-
-function addMove(position, className){
-  setMatrix(matrix, position, className);
-  playerChanger();
+function addEventListener(){
+  board.addEventListener('click', function(e){
+      getPositionFromClass(e.target.className);
+    })
 }
 
 function getPositionFromClass(nodeClass){
@@ -81,10 +58,45 @@ function getPositionFromClass(nodeClass){
   addMove(position, className);
 }
 
-function addEventListener(){
-  board.addEventListener('click', function(e){
-      getPositionFromClass(e.target.className);
-    })
+function setPlayer(){
+  if (player === 'X'){
+    player = 'O'
+  } else {
+    player = 'X'
+  }
+}
+
+function playerChanger(){
+    nextPlayer.innerHTML = 'Turn for' + ' ' + player;
+}
+
+function setMatrix(matrix, position, className){
+  let setClass = document.getElementsByClassName(className);
+  if (setClass[0].innerHTML === ''){
+    matrix[position[0]][position[1]] = player;
+    setClass[0].innerHTML = player;
+    checkWinner(matrix);
+    if (gamerunning === true){
+      setPlayer();
+      playerChanger();
+    }
+    console.log(matrix)
+  }
+}
+
+function addMove(position, className){
+  if (gamerunning === true){
+    setMatrix(matrix, position, className);
+  }
+}
+
+function checkWinner(matrix){
+  isLineWin(matrix);
+  isColumnWin(matrix);
+  isAnyDiagonalWin(matrix);
+  if (gamerunning === true){
+    noEmptyPlace(matrix);
+  }
 }
 
 function isLineWin(matrix){
@@ -109,8 +121,26 @@ function isAnyDiagonalWin(matrix){
   }
 }
 
-function isWon(){
-  console.log('win' + player);
+function noEmptyPlace(matrix){
+  if(matrix[0].includes('') === false && matrix[1].includes('') === false && matrix[2].includes('') === false){
+    gamerunning = false;
+    nextPlayer.innerHTML = 'Gameover';
+
+    var containerDiv = document.querySelector('.current-player');
+    const newGame = document.createElement("button");
+    newGame.innerHTML = 'Retry'
+    containerDiv.appendChild(newGame);
+    newGame.addEventListener('click', function(){
+      board.remove();
+      renderBoard(board, matrix);
+    })
+  }
 }
+
+function isWon(){
+  gamerunning = false;
+  nextPlayer.innerHTML = 'Winner is player' + ' ' + player;
+}
+
 
 renderBoard(board, matrix);
