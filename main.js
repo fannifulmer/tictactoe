@@ -125,16 +125,20 @@ function isAnyDiagonalWin(matrix){
 function noEmptyPlace(matrix){
   if(matrix[0].includes('') === false && matrix[1].includes('') === false && matrix[2].includes('') === false){
     gamerunning = false;
-    const tableElements = document.querySelectorAll("td");
+    const tableElements = document.querySelectorAll("table");
     for(var i = 0; i < tableElements.length; i++){
-      tableElements[i].className = "animated hinge"
+      tableElements[i].className = "animated flip"
     }
-    nextPlayer.innerHTML = 'Gameover';
-    // nextPlayer.className = "animated hinge"
+    nextPlayer.innerHTML = 'Draw';
+    setTimeout(function(){location.reload()}, 800);
   }
 }
 
 function reset(){
+  const tableElements = document.querySelectorAll("tr");
+  for(var i = 0; i < tableElements.length; i++){
+    tableElements[i].innerHTML = '';
+  }
   location.reload()
 }
 
