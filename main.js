@@ -125,8 +125,12 @@ function isAnyDiagonalWin(matrix){
 function noEmptyPlace(matrix){
   if(matrix[0].includes('') === false && matrix[1].includes('') === false && matrix[2].includes('') === false){
     gamerunning = false;
+    const tableElements = document.querySelectorAll("td");
+    for(var i = 0; i < tableElements.length; i++){
+      tableElements[i].className = "animated hinge"
+    }
     nextPlayer.innerHTML = 'Gameover';
-    nextPlayer.className = "animated hinge"
+    // nextPlayer.className = "animated hinge"
   }
 }
 
