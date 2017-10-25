@@ -10,20 +10,31 @@ table {
   margin: 20px;
 }
 
-.current-player {
-   display: flex;
-   /* flex-direction: column; */
-   justify-content: center;
-   font-family: 'Josefin Sans', sans-serif;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 td {
-  padding: 0 0 0 45px;
   font-size: 4em;
-  height: 100px;
-  max-height: 200px; 
-  width: 100px; 
-  max-width: 100px;
+  height: 130px;
+  width: 130px; 
   background-color: #CBE4E2;
   font-family: 'Josefin Sans', sans-serif;
+}
+
+.reset-button {
+  margin: 10px;
+  background: black;
+  color: white;
+  border: 0px solid white;
+  padding: 5px;
+}
+
+tr {
+  text-align: center;
 }

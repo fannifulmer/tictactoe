@@ -1,6 +1,7 @@
 'use strict';
-let nextPlayer = document.querySelector('h1');
+let nextPlayer = document.querySelector('.current-player');
 const board = document.querySelector(".board");
+const resetButton = document.querySelector('.reset-button');
 let gamerunning = true;
 
 let matrix = [
@@ -125,16 +126,11 @@ function noEmptyPlace(matrix){
   if(matrix[0].includes('') === false && matrix[1].includes('') === false && matrix[2].includes('') === false){
     gamerunning = false;
     nextPlayer.innerHTML = 'Gameover';
-
-    var containerDiv = document.querySelector('.current-player');
-    const newGame = document.createElement("button");
-    newGame.innerHTML = 'Retry'
-    containerDiv.appendChild(newGame);
-    newGame.addEventListener('click', function(){
-      board.remove();
-      renderBoard(board, matrix);
-    })
   }
+}
+
+function reset(){
+  location.reload()
 }
 
 function isWon(){
@@ -144,3 +140,4 @@ function isWon(){
 
 
 renderBoard(board, matrix);
+resetButton.addEventListener('click', reset);
