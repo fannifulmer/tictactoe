@@ -126,6 +126,7 @@ function noEmptyPlace(matrix){
   if(matrix[0].includes('') === false && matrix[1].includes('') === false && matrix[2].includes('') === false){
     gamerunning = false;
     nextPlayer.innerHTML = 'Gameover';
+    nextPlayer.className = "animated hinge"
   }
 }
 
