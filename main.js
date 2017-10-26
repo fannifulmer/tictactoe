@@ -128,23 +128,26 @@ function noEmptyPlace(matrix){
     nextPlayer.innerHTML = 'Draw';
     resetButton.innerHTML = 'New game';
     resetButton.addEventListener('click', gameOver);
+    board.className = "board";
   }
 }
 
 function gameOver(matrix){
-  const tableElements = document.querySelectorAll("table");
-  for(var i = 0; i < tableElements.length; i++){
-    tableElements[i].className = "animated flip"
-  }
+  console.log('gameover');
+  board.className = "animated flip";
   player = 'X';
   playerChanger();
   gamerunning = true;
+  resetButton.innerHTML = 'Reset';
 }
 
 function reset(){
-  const tableElements = document.querySelectorAll("td");
-  for(var i = 0; i < tableElements.length; i++){
-    tableElements[i].innerHTML = '';
+  if (gamerunning = true){
+    console.log('reset');
+    const tableElements = document.querySelectorAll("td");
+    for(var i = 0; i < tableElements.length; i++){
+      tableElements[i].innerHTML = '';
+    }
     matrix = [
       ['', '', ''],
       ['', '', ''],
@@ -156,6 +159,7 @@ function reset(){
 }
 
 function isWon(){
+  board.className = "board";
   gamerunning = false;
   nextPlayer.innerHTML = 'Winner is player' + ' ' + player;
   resetButton.innerHTML = 'New game';
