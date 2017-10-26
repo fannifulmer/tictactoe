@@ -125,26 +125,41 @@ function isAnyDiagonalWin(matrix){
 function noEmptyPlace(matrix){
   if(matrix[0].includes('') === false && matrix[1].includes('') === false && matrix[2].includes('') === false){
     gamerunning = false;
-    const tableElements = document.querySelectorAll("table");
-    for(var i = 0; i < tableElements.length; i++){
-      tableElements[i].className = "animated flip"
-    }
     nextPlayer.innerHTML = 'Draw';
-    setTimeout(function(){location.reload()}, 800);
+    resetButton.innerHTML = 'New game';
+    resetButton.addEventListener('click', gameOver);
   }
 }
 
+function gameOver(matrix){
+  const tableElements = document.querySelectorAll("table");
+  for(var i = 0; i < tableElements.length; i++){
+    tableElements[i].className = "animated flip"
+  }
+  player = 'X';
+  playerChanger();
+  gamerunning = true;
+}
+
 function reset(){
-  const tableElements = document.querySelectorAll("tr");
+  const tableElements = document.querySelectorAll("td");
   for(var i = 0; i < tableElements.length; i++){
     tableElements[i].innerHTML = '';
+    matrix = [
+      ['', '', ''],
+      ['', '', ''],
+      ['', '', '']
+    ]
+    player = 'X';
+    playerChanger();
   }
-  location.reload()
 }
 
 function isWon(){
   gamerunning = false;
   nextPlayer.innerHTML = 'Winner is player' + ' ' + player;
+  resetButton.innerHTML = 'New game';
+  resetButton.addEventListener('click', gameOver);
 }
 
 
