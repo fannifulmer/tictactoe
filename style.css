@@ -30,14 +30,32 @@ td {
   font-family: 'Josefin Sans', sans-serif;
 }
 
+
 .reset-button {
   margin: 10px;
-  background: black;
-  color: white;
-  border: 0px solid white;
+  background: #678C92;
+  color: black;
+  border: 1px solid #547477;
   padding: 5px;
+  height: 30px;
+  width: 120px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2rem;
 }
 
 tr {
   text-align: center;
+}
+
+@media only screen and (max-width: 800px) {
+  td {
+    height: 200px;
+    width: 200px;
+  }
+  .reset-button {
+    margin-top: 25px;
+    width: 200px;
+    height: 50px;
+    font-size: 2rem;
+  }
 }

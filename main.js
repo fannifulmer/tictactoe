@@ -101,6 +101,7 @@ function checkWinner(matrix){
 }
 
 function isLineWin(matrix){
+  const tableElements = document.querySelectorAll("tr");
   for(let i = 0; i < matrix.length; i++){
     if (matrix[i][0] === matrix[i][1] && matrix[i][1] === matrix[i][2] && matrix[i][0] !== ''){
       isWon();
@@ -159,6 +160,7 @@ function reset(){
 }
 
 function isWon(){
+  console.log(player);
   board.className = "board";
   gamerunning = false;
   nextPlayer.innerHTML = 'Winner is player' + ' ' + player;
